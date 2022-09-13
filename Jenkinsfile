@@ -13,7 +13,7 @@ pipeline {
                     sh (returnStdout: true, script: '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
                             STATUS="$(systemctl is-active k3s.service)"
-                            if [ "${STATUS}" = "active" ]; then
+                            if [ -e systemctl is-active k3s.service = "active" ]; then
                             echo "K3s is already installed.======${STATUS}"
                             else 
                             curl -sfL https://get.k3s.io | sh -
@@ -29,7 +29,7 @@ pipeline {
                     sh (returnStdout: true, script: '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
                             STATUS="$(systemctl is-active k3s.service)"
-                            if [ "${STATUS}" = "active" ]; then
+                            if [ -e -e systemctl is-active k3s.service = "active" ]; then
                             echo "K3s is already installed.======${STATUS}"
                             else 
                             echo "K3s nasb nashod.======${STATUS}"                              
