@@ -11,8 +11,9 @@ pipeline {
              environment {
                  STATUS = sh(script: '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
-                            systemctl is-active k3s.service  ENDSSH
-                            ''', returnStdout: true)
+                            systemctl is-active k3s.service  
+ENDSSH
+''', returnStdout: true)
         }
             steps {
                     echo 'Using remote command over ssh'
