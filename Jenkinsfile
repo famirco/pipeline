@@ -24,8 +24,8 @@ pipeline {
                             curl -sfL https://get.k3s.io | sh -
                             echo "Install k3s completly install.======${STATUS}"
                             fi
-                            ENDSSH
-                            '''.stripIndent())
+ENDSSH
+'''.stripIndent())
             }
         }
         stage('Test K3s for running') {
@@ -38,8 +38,8 @@ pipeline {
                             else 
                             echo "K3s nasb nashod.======${STATUS}"                              
                             fi
-                            ENDSSH
-                            '''.stripIndent())
+ENDSSH
+'''.stripIndent())
             }
         }
     }
