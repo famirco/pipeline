@@ -12,9 +12,8 @@ pipeline {
                 script{
                     echo 'Using remote command over ssh'
                     sh '''ssh root@192.168.100.100 << ENDSSH
-                            #!/usr/bin/bash 
-			            	STATUS="$(systemctl is-active k3s.service)"
-                            if [ "${STATUS}" = "active" ]; then
+                            #!/usr/bin/bash
+                            if [ "systemctl is-active k3s.service" = "active" ]; then
                                 echo "K3s is already installed."
                             else 
                                 curl -sfL https://get.k3s.io | sh -
@@ -32,8 +31,7 @@ ENDSSH
                     echo 'Using remote command over ssh'
                     sh '''ssh root@192.168.100.100 << ENDSSH
                             #!/usr/bin/bash
-			            	STATUS="$(systemctl is-active k3s.service)"
-                            if [ "${STATUS}" = "active" ]; then
+                            if [ "systemctl is-active k3s.service" = "active" ]; then
                                 echo "K3s is already installed."
                             else 
                                 echo "K3s nasb nashod."                              
