@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script{
                     echo 'Using remote command over ssh'
-                    sh '''#!/bin/bash
+                    sh '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
 			            	STATUS="$(systemctl is-active k3s.service)"
                             if [ "${STATUS}" = "active" ]; then
@@ -30,7 +30,7 @@ ENDSSH
             steps {
                  script{
                     echo 'Using remote command over ssh'
-                    sh '''#!/bin/bash
+                    sh '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
 			            	STATUS="$(systemctl is-active k3s.service)"
                             if [ "${STATUS}" = "active" ]; then
@@ -40,8 +40,8 @@ ENDSSH
                             fi
 ENDSSH
 '''
+                }
             }
-        }
         }
     }
 }
