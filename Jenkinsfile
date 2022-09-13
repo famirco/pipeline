@@ -8,12 +8,17 @@ pipeline {
             }
         }
         stage('Install K3s') {
+             environment {
+                 STATUS = sh(script: '''#!/usr/bin/bash
+			            	ssh root@192.168.100.100 << ENDSSH
+                            systemctl is-active k3s.service  ENDSSH
+                            ''', returnStdout: true)
+        }
             steps {
                     echo 'Using remote command over ssh'
                     sh (returnStdout: true, script: '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
-                            STATUS="$(systemctl is-active k3s.service)"
-                            if [ -e systemctl is-active k3s.service = "active" ]; then
+                            if [ ${STATUS} = "active" ]; then
                             echo "K3s is already installed.======${STATUS}"
                             else 
                             curl -sfL https://get.k3s.io | sh -
@@ -28,8 +33,7 @@ pipeline {
                     echo 'Using remote command over ssh'
                     sh (returnStdout: true, script: '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
-                            STATUS="$(systemctl is-active k3s.service)"
-                            if [ -e -e systemctl is-active k3s.service = "active" ]; then
+                            if [ ${STATUS} = "active" ]; then
                             echo "K3s is already installed.======${STATUS}"
                             else 
                             echo "K3s nasb nashod.======${STATUS}"                              
