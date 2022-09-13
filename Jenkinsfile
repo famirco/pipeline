@@ -2,19 +2,44 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('SSH Login') {
             steps {
-                echo 'Amir Buildi.test'
+                sh 'ssh -o StrictHostKeyChecking=no  root@192.168.100.100 echo Hi!'
             }
         }
-        stage('Test') {
+        stage('Install K3s') {
             steps {
-                echo 'Amir Testiest'
+                script{
+                    echo 'Using remote command over ssh'
+                    sh '''#!/bin/bash
+			            	ssh root@192.168.100.100 << ENDSSH
+			            	STATUS="$(systemctl is-active k3s.service)"
+                            if [ "${STATUS}" = "active" ]; then
+                                echo "K3s is already installed."
+                            else 
+                                curl -sfL https://get.k3s.io | sh -
+                                echo "Install k3s completly install."
+                            fi
+ENDSSH
+'''
+
+                }
             }
         }
-        stage('Deploy') {
+        stage('Test K3s for running') {
             steps {
-                echo 'Amir Deployingtest'
+                 script{
+                    echo 'Using remote command over ssh'
+                    sh '''#!/bin/bash
+			            	ssh root@192.168.100.100 << ENDSSH
+			            	STATUS="$(systemctl is-active k3s.service)"
+                            if [ "${STATUS}" = "active" ]; then
+                                echo "K3s is already installed."
+                            else 
+                                echo "K3s nasb nashod."                              
+                            fi
+ENDSSH
+'''
             }
         }
     }
