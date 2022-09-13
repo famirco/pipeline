@@ -13,14 +13,13 @@ pipeline {
                     echo 'Using remote command over ssh'
                     sh '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
-                            echo 
-			            	STATUS="$(systemctl is-active k3s.service)"
-                            if [ "${STATUS}" = "active" ]; then
-                                echo "K3s is already installed.======${STATUS}"
-                            else 
-                                curl -sfL https://get.k3s.io | sh -
-                                echo "Install k3s completly install.======${STATUS}"
-                            fi
+                                STATUS="$(systemctl is-active k3s.service)"
+                                if [ "${STATUS}" = "active" ]; then
+                                    echo "K3s is already installed.======${STATUS}"
+                                else 
+                                    curl -sfL https://get.k3s.io | sh -
+                                    echo "Install k3s completly install.======${STATUS}"
+                                fi
 ENDSSH
 '''
 
@@ -33,12 +32,12 @@ ENDSSH
                     echo 'Using remote command over ssh'
                     sh '''#!/usr/bin/bash
 			            	ssh root@192.168.100.100 << ENDSSH
-			            	STATUS="$(systemctl is-active k3s.service)"
-                            if [ "${STATUS}" = "active" ]; then
-                                echo "K3s is already installed.======${STATUS}"
-                            else 
-                                echo "K3s nasb nashod.======${STATUS}"                              
-                            fi
+                                STATUS="$(systemctl is-active k3s.service)"
+                                if [ "${STATUS}" = "active" ]; then
+                                    echo "K3s is already installed.======${STATUS}"
+                                else 
+                                    echo "K3s nasb nashod.======${STATUS}"                              
+                                fi
 ENDSSH
 '''
                 }
