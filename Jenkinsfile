@@ -5,7 +5,7 @@ pipeline {
         stage('SSH Login') {
             when {
                 expression {
-                    BRANCH_NAME == 'Install-K3s' && Install-K3s == true
+                    BRANCH_NAME == 'Install-K3s' && CODE_CHANGES == true
                 }
             }
             steps {
