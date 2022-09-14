@@ -14,6 +14,7 @@ pipeline {
                     remote.name = 'DevOpsServer'
                     remote.host = '192.168.100.100'
                     remote.user = 'root'
+                    remote.password = '1qaz!QAZ'
                     remote.allowAnyHosts = true
                     stage('Remote SSH') {
                     sshPut remote: remote, from: 'InstallK3s.sh', into: '.'
