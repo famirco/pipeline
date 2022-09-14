@@ -1,8 +1,13 @@
+CODE_CHANGES = getGitChanges()
 pipeline {
     agent any
-
     stages {
         stage('SSH Login') {
+            when {
+                expression {
+                    BRANCH_NAME == 'Install-K3s' && Install-K3s == true
+                }
+            }
             steps {
                 sh 'ssh -o StrictHostKeyChecking=no  root@192.168.100.100 echo Hi!'
             }
