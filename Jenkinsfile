@@ -18,6 +18,8 @@ pipeline {
                     sshPut remote: remote, from: 'InstallK3s.sh', into: '.'
                     sshScript remote: remote, script: "InstallK3s.sh"
                     }
+            
+            }
         }
     }
 }
