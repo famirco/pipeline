@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Install K3s') {
             steps {
+                script {
                     def remote = [:]
                     remote.name = 'DevOpsServer'
                     remote.host = '192.168.100.100'
@@ -19,6 +20,7 @@ pipeline {
                     sshScript remote: remote, script: "InstallK3s.sh"
                     }
             
+                }
             }
         }
     }
